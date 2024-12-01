@@ -3,16 +3,18 @@ import { writeStringToFile } from "./lib/file.ts";
 import { htmlToMarkdown } from "./lib/html.ts";
 
 if (import.meta.main) {
-  const [dayStr, yearStr] = Deno.args;
+  const [dayStr, yearStr, partStr] = Deno.args;
   const day = parseInt(dayStr);
   const year = parseInt(yearStr);
+  const part = parseInt(partStr);
 
   if (isNaN(day) || isNaN(year)) {
     console.error("Day and year must be valid numbers");
     Deno.exit(1);
   }
 
-  setupDay(day, year);
+  if (part === 1) setupDay(day, year);
+  else if (part === 2) console.log("TODO: get part 2");
 }
 
 async function setupDay(day: number, year: number) {
